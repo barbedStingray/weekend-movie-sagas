@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './MovieList.css'
 
 function MovieList() {
+
+    const history = useHistory();
 
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
@@ -11,6 +13,14 @@ function MovieList() {
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
+
+    function goToDetailsPage(id) {
+        console.log(`going to details`, id);
+
+        dispatch({ type: 'FETCH_DETAILS_PAGE', payload: id})
+        history.push('/details');
+    }
+
 
     return (
         <main>
@@ -20,9 +30,7 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <Link>
-                                <img src={movie.poster} alt={movie.title} />
-                            </Link>
+                                <img onClick={() => goToDetailsPage(movie.id)} src={movie.poster} alt={movie.title} />
                         </div>
                     );
                 })}
