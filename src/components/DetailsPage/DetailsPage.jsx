@@ -1,6 +1,6 @@
 
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 
 
 export default function DetailsPage() {
@@ -12,15 +12,19 @@ export default function DetailsPage() {
     // const { movieId } = useParams();
 
 
-    function returnToMovies() {
-        console.log(`returning to movies`);
-        navigate('/');
-    }
+    // function returnToMovies() {
+    //     console.log(`returning to movies`);
+    //     // clear your REDUX state
+    //     navigate('/');
+    // }
 
     return (
         <div id='details-page'>
 
-            <button onClick={returnToMovies}>Return To Movies</button>
+            {/* <button onClick={returnToMovies}>Return To Movies</button> */}
+            <Link to="/" relative="path">
+                <p>Back to Movies</p>
+            </Link>
 
             {/* <p>movieID: {movieId}</p> */}
 
