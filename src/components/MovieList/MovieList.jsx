@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './MovieList.css'
 
 function MovieList() {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
@@ -17,8 +17,8 @@ function MovieList() {
     function goToDetailsPage(id) {
         console.log(`going to details`, id);
 
-        dispatch({ type: 'FETCH_DETAILS_PAGE', payload: id})
-        history.push('/details');
+        dispatch({ type: 'FETCH_DETAILS_PAGE', payload: id});
+        navigate(`/details/${id}`);
     }
 
 

@@ -1,3 +1,6 @@
+import { BrowserRouter } from 'react-router-dom';
+
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -26,7 +29,7 @@ function* fetchAllMovies() {
 
     } catch {
         console.log('get all error');
-    }     
+    }
 }
 
 
@@ -34,7 +37,8 @@ function* fetchDetailsPage(action) {
     try {
         const results = yield axios.get(`/api/movie/details/${action.payload}`);
         console.log(`getting details response:`, results.data);
-        yield put({ type: 'SET_DETAILS', payload: results.data});
+        yield put({ type: 'SET_DETAILS', payload: results.data });
+
 
     } catch (error) {
         console.log(`error in get details`, error);
@@ -94,8 +98,10 @@ sagaMiddleware.run(rootSaga);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <Provider store={storeInstance}>
-            <App />
-        </Provider>
+        <BrowserRouter>
+            <Provider store={storeInstance}>
+                <App />
+            </Provider>
+        </BrowserRouter>
     </React.StrictMode>
 );
