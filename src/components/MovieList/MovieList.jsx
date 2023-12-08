@@ -18,6 +18,7 @@ function MovieList() {
         console.log(`going to details`, id);
 
         dispatch({ type: 'FETCH_DETAILS_PAGE', payload: id});
+        dispatch({ type: 'FETCH_DETAILS_GENRE', payload: id });
         navigate(`/details/${id}`);
     }
 

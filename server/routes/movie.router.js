@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     })
 });
 
-// GET details /details
+// GET movie details /details
 router.get('/details/:id', (req, res) => {
   console.log(`getting details by id`, req.params.id);
 
@@ -26,13 +26,11 @@ router.get('/details/:id', (req, res) => {
 	"movies"."id",
 	"movies"."title",
 	"movies"."description",
-	"movies"."poster",
-	"genres"."name"
+	"movies"."poster"
 
 FROM "movies" 
-JOIN "movies_genres" ON "movies"."id" = "movies_genres"."movie_id"
-JOIN "genres" ON "genres"."id" = "movies_genres"."genre_id"
 WHERE "movies"."id" = $1
+
 ;`;
 
   pool.query(queryText, [req.params.id])
@@ -45,6 +43,22 @@ WHERE "movies"."id" = $1
     res.sendStatus(500);
   });
 })
+
+// get Genres here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

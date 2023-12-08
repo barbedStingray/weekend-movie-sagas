@@ -14,10 +14,12 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery, takeLatest, put } from 'redux-saga/effects';
 import axios from 'axios';
 
+
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeLatest('FETCH_MOVIES', fetchAllMovies);
     yield takeLatest('FETCH_DETAILS_PAGE', fetchDetailsPage);
+    yield takeLatest('FETCH_DETAILS_GENRE', fetchDetailsGenre);
 }
 
 function* fetchAllMovies() {
@@ -45,6 +47,21 @@ function* fetchDetailsPage(action) {
         alert(`error in details gET`);
     }
 }
+
+// set Genres generator
+function* fetchDetailsGenre(action) {
+    try {
+        const results = yield axios.get(`/api/genre/details/${action.payload}`);
+        console.log(`getting details response:`, results.data);
+        yield put({ type: 'SET_GENRES', payload: results.data });
+
+
+    } catch (error) {
+        console.log(`error in get details`, error);
+        alert(`error in details gET`);
+    }
+}
+
 
 
 
