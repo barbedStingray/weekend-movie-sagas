@@ -102,6 +102,7 @@ export default function DetailsPage() {
                         <input
                             type='text'
                             placeholder="Movie Title"
+                            className='textInputs'
                             value={alterMovie.title}
                             onChange={handleAlterMovie('title')}
                         >
@@ -161,6 +162,7 @@ export default function DetailsPage() {
                 <label className={formView ? 'visible' : 'invisible'}>Poster: <input
                     type='text'
                     placeholder="picture.jpg"
+                    className='textInputs'
                     value={alterMovie.poster}
                     onChange={handleAlterMovie('poster')}
                 >
@@ -199,7 +201,7 @@ export default function DetailsPage() {
                     <label>Description: <textarea
                         type='text'
                         id='edit-description'
-                        placeholder="Thoughts on the movie"
+                        className='textInputs'
                         value={alterMovie.description}
                         onChange={handleAlterMovie('description')}
                     >

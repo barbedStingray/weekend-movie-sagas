@@ -10,8 +10,8 @@
       'blank header'
       'sidebar main';
     padding: 0 1%;
-    background-color: var(--app-background-color);
-    color: var(--text-color);
+    /* background-color: var(--app-background-color);
+    color: var(--text-color); */
 }
 
 #addHeader-div {
@@ -27,4 +27,19 @@
 
 #addMain-div {
     grid-area: main;
+    display: grid;
+    height: 300px;
+    border: 2px solid yellowgreen;
+
 }
+
+#add-description {
+    width: 90%;
+    height: 150px;
+  }
+
+  .textInputs {
+    background-color: var(--text-box-background);
+    color: var(--text-input-color);
+  }
+  

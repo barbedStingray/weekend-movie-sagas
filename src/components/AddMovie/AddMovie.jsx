@@ -12,7 +12,7 @@ export default function AddMovie(props) {
 
 
     const [newMovie, setNewMovie] = useState({
-        title: '',
+        title: 'Your Movie Title Here',
         poster: '',
         description: '',
         genre_id: ''
@@ -24,8 +24,7 @@ export default function AddMovie(props) {
     }
 
 
-    function addNewMovie(e) {
-        e.preventDefault();
+    function addNewMovie() {
         console.log(`adding new movie`);
         dispatch({ type: 'ADD_NEW_MOVIE', payload: newMovie });
         navigate('/');
@@ -36,16 +35,21 @@ export default function AddMovie(props) {
         <div id='add-movie'>
 
             <Link to={'/'}><p>Return to Movies</p></Link>
-            <h3>Add your New Movie Here!</h3>
 
-            <form onSubmit={addNewMovie}>
-
-                {JSON.stringify(newMovie)}
+            <div id='addHeader-div'>
+                {JSON.stringify(newMovie.title)}
                 <br />
-                <div id='addHeader-div'>
-                    <label>Title: <input
+                <button onClick={addNewMovie}>Add Movie</button>
+
+            </div>
+
+            <div id='addMain-div'>
+
+                <div>
+                    <label><input
                         type='text'
                         placeholder="Movie Title"
+                        className='textInputs'
                         value={newMovie.title}
                         onChange={handleNewMovie('title')}
                     >
@@ -53,32 +57,43 @@ export default function AddMovie(props) {
                     {newMovie.title}
                 </div>
 
-                <label>Poster: <input
-                    type='text'
-                    placeholder="picture.jpg"
-                    value={newMovie.poster}
-                    onChange={handleNewMovie('poster')}
-                >
-                </input></label>
-                {newMovie.poster}
-
-                <div id='addMain-div'>
-
-                    <label>Description: <textarea
+                <div>
+                    <label><input
                         type='text'
-                        placeholder="Thoughts on the movie"
+                        placeholder="picture.jpg"
+                        className='textInputs'
+                        value={newMovie.poster}
+                        onChange={handleNewMovie('poster')}
+                    >
+                    </input></label>
+                    {newMovie.poster}
+                </div>
+
+                <div>
+                    <label><textarea
+                        type='text'
+                        id='add-description'
+                        className='textInputs'
+                        placeholder="Description here..."
                         value={newMovie.description}
                         onChange={handleNewMovie('description')}
                     >
                     </textarea></label>
                     {newMovie.description}
-
                 </div>
+
+            </div>
+
+            <div id='addSidebar-div'>
+
+                <h4>Select Genre</h4>
 
                 <select
                     value={newMovie.genre}
                     onChange={handleNewMovie('genre_id')}
                     name="genreType"
+                    className='textInputs'
+
                 >
                     {props.genreDropdown.map((genre) =>
                         <option
@@ -88,10 +103,10 @@ export default function AddMovie(props) {
                     )}
                 </select>
                 {newMovie.genre_id}
+            </div>
 
-                <button>Add Movie</button>
 
-            </form>
+
 
 
 

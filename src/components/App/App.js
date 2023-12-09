@@ -28,7 +28,9 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div 
+      id='web-display'
+      className="App">
 
       <Routes>
         <Route>

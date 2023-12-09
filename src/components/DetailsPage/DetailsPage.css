@@ -24,8 +24,8 @@
     'blank header'
     'sidebar main';
   padding: 0 1%;
-  background-color: var(--app-background-color);
-  color: var(--text-color);
+  /* background-color: var(--app-background-color);
+  color: var(--text-color); */
 }
 
 #detailsHeader-div {
