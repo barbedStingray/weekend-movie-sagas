@@ -77,15 +77,15 @@ As one of your last projects, it's possible you will be sharing this with employ
 
 This should show:
 
-- an input field (for the movie title)
-- an input field (for the movie poster image URL))
-- a textarea (for the movie description)
-- a dropdown (for the genres)
+x an input field (for the movie title)
+x an input field (for the movie poster image URL))
+x a textarea (for the movie description)
+x a dropdown (for the genres)
 
 The Add Movie page should have the buttons:
 
-- `Cancel` button, which should bring the user to the Home/List Page
-- `Save` button, which should save these inputs in the database and bring the user to the Home/List Page (which now has the new movie)
+x `Cancel` button, which should bring the user to the Home/List Page
+x `Save` button, which should save these inputs in the database and bring the user to the Home/List Page (which now has the new movie)
 
 **Base functionality does not require being able to select more than one genre for a new movie**
 
@@ -94,7 +94,7 @@ The Add Movie page should have the buttons:
 > Hint: You'll want to use the genres that are in the db for your dropdown
 
 
-### 2. Refresh on Details Page
+###xxx 2. Refresh on Details Page
 Allow the app to maintain on refresh our details page.
 Research the [useParams](https://reactrouter.com/en/main/hooks/use-params) hook for React Router.
 
@@ -116,7 +116,7 @@ The edit page should have the buttons:
 - [ ] Display the current values in the input (title) and textarea (description) on the Edit Page
 - [ ] Display all genres on movie list page. Research JSON_AGG to make this possible.
 - [ ] Move sagas and reducers out of your `index.js` and into separate files (ideally in `src/redux/reducers` and `src/redux/sagas` folders).
-- [ ] Allow the user to refresh the details or edit page. The url for the details page would be something like `/details/1` for movie with id of `1`. Research the [useParams](https://reactrouter.com/en/main/hooks/use-params) hook for React Router.
+- [x] Allow the user to refresh the details or edit page. The url for the details page would be something like `/details/1` for movie with id of `1`. Research the [useParams](https://reactrouter.com/en/main/hooks/use-params) hook for React Router.
 - [ ] Allow the user to add a genre to a movie.
 - [ ] Allow the user to remove a genre from a movie.
 - [ ] Only display the top 10 movies, and allow the user to search for movie titles with a search bar on the home page (you can do this on the client side or the server side, server side is a bigger stretch, but good practice).

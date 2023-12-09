@@ -31,7 +31,22 @@ WHERE "movies"."id" = $1
     console.log(`error in GET details`);
     res.sendStatus(500);
   });
-})
+});
+
+// router to get genres for dropdown menu
+router.get('/menu', (req, res) => {
+  console.log(`getting genres for dropdown`);
+
+  const queryText = `SELECT * FROM "genres";`;
+
+  pool.query(queryText).then((result) => {
+    console.log('success in dropdown results', result.rows);
+    res.send(result.rows);
+  }).catch((error) => {
+    console.log(`error in getting dropdown`);
+    res.sendStatus(500);
+  });
+});
 
 
 module.exports = router;

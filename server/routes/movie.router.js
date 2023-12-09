@@ -77,6 +77,8 @@ router.post('/', (req, res) => {
   pool.query(insertMovieQuery, [req.body.title, req.body.poster, req.body.description])
   .then(result => {
     console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
+    console.log(`request body`, req.body);
+    console.log('genre_id:', req.body.genre_id);
     
     const createdMovieId = result.rows[0].id
 

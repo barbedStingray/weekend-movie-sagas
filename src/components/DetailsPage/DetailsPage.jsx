@@ -1,6 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams, Link } from 'react-router-dom';
+
+import './DetailsPage.css';
 
 
 export default function DetailsPage() {
@@ -9,6 +11,18 @@ export default function DetailsPage() {
     const genreDetails = useSelector(store => store.genres);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+
+    // form view for the edits to appear
+    const [formView, setFormView] = useState(false);
+
+    // variable to pass the update
+    const [alterMovie, setAlterMovie] = useState({
+        title: '',
+        poster: '',
+        description: '',
+        genre_id: ''
+    });
 
     // use useParams and make a Get request from the details page
     // use params
@@ -25,6 +39,35 @@ export default function DetailsPage() {
     useEffect(() => {
         refreshPage()
     }, []);
+
+
+    // build your new movie details
+    const handleAlterMovie = (key) => (event) => {
+        console.log(`editing yoru movie`);
+        setAlterMovie({ ...alterMovie, [key]: event.target.value });
+    }
+
+    // editMovie button
+    function editMovie() {
+        console.log(`editing your movie`);
+        setAlterMovie({
+            title: movieDetails[0].title,
+            poster: movieDetails[0].poster,
+            description: movieDetails[0].description,
+            genre_id: ''
+        });
+        console.log(`new alterMovie`, alterMovie);
+        setFormView(!formView);
+    }
+
+    // save your edits 
+    function saveEdits(id) {
+        console.log('saving your edits:', alterMovie);
+
+        // send your edits to the server
+        dispatch({ type: 'UPDATE_DETAILS_MOVIE', payload: alterMovie });
+    }
+
 
 
     return (
@@ -49,6 +92,64 @@ export default function DetailsPage() {
                     <p>{genre.name}</p>
                 </div>
             )}
+
+            {/* edit your movie */}
+            <button
+                className={formView ? 'invisible' : 'visible'}
+                onClick={editMovie}
+            >Edit Movie</button>
+
+            {/* cancel your edits */}
+            <button
+                className={formView ? 'visible' : 'invisible'}
+                onClick={() => editMovie(id)}
+            >Cancel Edit</button>
+
+            {/* save your edits */}
+            <button
+                className={formView ? 'visible' : 'invisible'}
+                onClick={saveEdits}
+            >Save Edits</button>
+
+
+            <br />
+            {JSON.stringify(alterMovie)}
+
+            <div
+                className={formView ? 'visible' : 'invisible'}
+                id='movieEdit-form'
+            >
+                <h3>Edit Your Movie!</h3>
+
+                    <label>Title: <input
+                        type='text'
+                        placeholder="Movie Title"
+                        value={alterMovie.title}
+                        onChange={handleAlterMovie('title')}
+                    >
+                    </input></label>
+                    {alterMovie.title}
+
+                    <label>Poster: <input
+                        type='text'
+                        placeholder="picture.jpg"
+                        value={alterMovie.poster}
+                        onChange={handleAlterMovie('poster')}
+                    >
+                    </input></label>
+                    {alterMovie.poster}
+
+                    <label>Description: <textarea
+                        type='text'
+                        placeholder="Thoughts on the movie"
+                        value={alterMovie.description}
+                        onChange={handleAlterMovie('description')}
+                    >
+                    </textarea></label>
+                    {alterMovie.description}
+
+            </div>
+
 
         </div>
     )

@@ -1,0 +1,14 @@
+
+/* invisible edit form */
+.invisible {
+    display: none;
+    position: fixed;
+    border: 5px solid lightblue;
+  }
+
+  /* visible edit form */
+  .visible {
+    display: flex;
+    flex-direction: column;
+  }
+

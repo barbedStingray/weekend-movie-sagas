@@ -20,6 +20,9 @@ function* rootSaga() {
     yield takeLatest('FETCH_MOVIES', fetchAllMovies);
     yield takeLatest('FETCH_DETAILS_PAGE', fetchDetailsPage);
     yield takeLatest('FETCH_DETAILS_GENRE', fetchDetailsGenre);
+    yield takeLatest('ADD_NEW_MOVIE', addNewMovie);
+    yield takeLatest('FETCH_SELECT_GENRE_MENU', fetchGenreMenu);
+    yield takeLatest('UPDATE_DETAILS_MOVIE', updateDetailsMovie);
 }
 
 function* fetchAllMovies() {
@@ -62,6 +65,46 @@ function* fetchDetailsGenre(action) {
     }
 }
 
+// fetch the Genre dropdown menu
+function* fetchGenreMenu() {
+    try {
+        const genres = yield axios.get('/api/genre/menu');
+        console.log(`genres results`, genres.data);
+        yield put({ type: 'SET_GENRE_DROPDOWN', payload: genres.data });
+
+    } catch (error) {
+        console.log(`error in fetching dropdown genres`, error);
+        alert(`something went wrong`);
+    }
+}
+
+// PUT route update details of a movie
+function* updateDetailsMovie(action) {
+    try {
+        yield axios.put()
+
+    } catch (error) {
+        console.log(`error in updating single ${id} movie`, error);
+        alert(`something went wrong`);
+    }
+}
+
+
+
+
+
+// POST new movie
+function* addNewMovie(action) {
+    try {
+        yield axios.post('/api/movie', action.payload);
+        yield put({ type: 'FETCH_MOVIES' });
+
+    } catch (error) {
+        console.log(`error in POST addNewMovie`, error);
+        alert(`error in POST addNewMovie`);
+    }
+}
+
 
 
 
@@ -98,12 +141,23 @@ const genres = (state = [], action) => {
     }
 }
 
+// genres dropdown menu
+const genreDropdown = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_GENRE_DROPDOWN':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         detailsMovie,
         genres,
+        genreDropdown
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
