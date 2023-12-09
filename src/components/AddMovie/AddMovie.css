@@ -1,7 +1,6 @@
 
 
-/* MOVIE DISPLAY PAGE */
-#movie-list {
+#add-movie {
     text-align: center;
     /* border: 5px solid darkslateblue; */
     display: grid;
@@ -13,38 +12,19 @@
     padding: 0 1%;
     background-color: var(--app-background-color);
     color: var(--text-color);
-    }
-  
-  #movieHeader-div {
+}
+
+#addHeader-div {
     grid-area: header;
     /* border: 2px solid yellowgreen; */
-    display: grid;
-    align-content: center;
-  }
-  
-  #movieSidebar-div {
+}
+
+#addSidebar-div {
     grid-area: sidebar;
     min-width: 200px;
     /* border: 2px solid yellowgreen; */
-  
-  }
-  
-  #movieList-div {
+}
+
+#addMain-div {
     grid-area: main;
-  padding: 10px 10px;
-  /* background-color: black; */
-  /* border: 2px solid blue; */
-  display: grid;
-  grid-template-columns: 
-    repeat(4, 1fr);
-  gap: 10px 10px;
-  }
-  
-  .movieImage {
-    width: 150px;
-    height: 220px;
-    border: 1px solid silver;
-  }
-  
-  /* MOVIE DISPLAY PAGE */
-  
+}

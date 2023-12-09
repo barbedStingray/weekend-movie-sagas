@@ -12,3 +12,64 @@
     flex-direction: column;
   }
 
+/* MOVIE DETAILS PAGE */
+
+#details-page {
+  text-align: center;
+  border: 5px solid darkslateblue;
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-template-rows: 150px 1fr;
+  grid-template-areas: 
+    'blank header'
+    'sidebar main';
+  padding: 0 1%;
+  background-color: var(--app-background-color);
+  color: var(--text-color);
+}
+
+#detailsHeader-div {
+  grid-area: header;
+  display: grid;
+  /* border: 2px solid yellowgreen; */
+  align-content: space-around;
+}
+
+#nav-buttons {
+  /* border: solid 2px gold; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#blank-div {
+  /* border: solid 2px gold; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 5%;
+}
+
+#detailsSidebar-div {
+  grid-area: sidebar;
+  /* border: 2px solid yellowgreen; */
+  padding: 3%;
+}
+
+#detailsMain-div {
+  grid-area: main;
+  padding: 10px 7%;
+}
+
+#edit-description {
+  width: 96%;
+  height: 200px;
+}
+
+
+/* MOVIE DETAILS PAGE */
+
+
+

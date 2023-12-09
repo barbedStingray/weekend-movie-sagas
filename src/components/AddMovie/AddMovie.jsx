@@ -2,6 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
+import './AddMovie.css';
 
 
 export default function AddMovie(props) {
@@ -41,15 +42,16 @@ export default function AddMovie(props) {
 
                 {JSON.stringify(newMovie)}
                 <br />
-
-                <label>Title: <input
-                    type='text'
-                    placeholder="Movie Title"
-                    value={newMovie.title}
-                    onChange={handleNewMovie('title')}
-                >
-                </input></label>
-                {newMovie.title}
+                <div id='addHeader-div'>
+                    <label>Title: <input
+                        type='text'
+                        placeholder="Movie Title"
+                        value={newMovie.title}
+                        onChange={handleNewMovie('title')}
+                    >
+                    </input></label>
+                    {newMovie.title}
+                </div>
 
                 <label>Poster: <input
                     type='text'
@@ -60,25 +62,29 @@ export default function AddMovie(props) {
                 </input></label>
                 {newMovie.poster}
 
-                <label>Description: <textarea
-                    type='text'
-                    placeholder="Thoughts on the movie"
-                    value={newMovie.description}
-                    onChange={handleNewMovie('description')}
-                >
-                </textarea></label>
-                {newMovie.description}
+                <div id='addMain-div'>
+
+                    <label>Description: <textarea
+                        type='text'
+                        placeholder="Thoughts on the movie"
+                        value={newMovie.description}
+                        onChange={handleNewMovie('description')}
+                    >
+                    </textarea></label>
+                    {newMovie.description}
+
+                </div>
 
                 <select
                     value={newMovie.genre}
                     onChange={handleNewMovie('genre_id')}
                     name="genreType"
                 >
-                    {props.genreDropdown.map((genre) => 
-                    <option 
-                        key={genre.id}
-                        value={genre.id}
-                    >{genre.name}</option>
+                    {props.genreDropdown.map((genre) =>
+                        <option
+                            key={genre.id}
+                            value={genre.id}
+                        >{genre.name}</option>
                     )}
                 </select>
                 {newMovie.genre_id}

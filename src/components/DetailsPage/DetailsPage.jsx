@@ -41,6 +41,11 @@ export default function DetailsPage() {
         refreshPage()
     }, []);
 
+    function backToMovies() {
+        console.log(`go back to movies`);
+        navigate('/');
+    }
+
 
     // build your new movie details
     const handleAlterMovie = (key) => (event) => {
@@ -81,91 +86,135 @@ export default function DetailsPage() {
     return (
         <div id='details-page'>
 
-            <Link to="/" relative="path">
-                <p>Back to Movies</p>
-            </Link>
+            <div id='detailsHeader-div'>
 
-            {/* movies map */}
-            {movieDetails.map((movie) =>
-                <div key={movie.id}>
-                    <img src={movie.poster} alt={movie.title} />
-                    <h2>{movie.title}</h2>
-                    <p>{movie.description}</p>
+                {/* Display title */}
+                <div className={formView ? 'invisible' : 'visible'}>
+                    {movieDetails.map((movie, i) =>
+                        <h1 key={i}>{movie.title}</h1>
+                    )}
                 </div>
-            )}
 
-            {/* genre map */}
-            {genreDetails.map((genre, i) =>
-                <div key={i}>
-                    <p>{genre.name}</p>
-                    <p>Genre id: {genre.id}</p>
-                    <p>movies_genres_id: {genre.movies_genres_id}</p>
+                <div className={formView ? 'visible' : 'invisible'}>
+                    {/* Edit title */}
+                    <label>Title:
+                        <br />
+                        <input
+                            type='text'
+                            placeholder="Movie Title"
+                            value={alterMovie.title}
+                            onChange={handleAlterMovie('title')}
+                        >
+                        </input></label>
+                    {/* {alterMovie.title} */}
+
                 </div>
-            )}
+
+                {/* navigation buttons */}
+                <div id='nav-buttons'>
+                    <div>
+                        {/* edit your movie */}
+                        <button
+                            className={formView ? 'invisible' : 'visible'}
+                            onClick={editMovie}
+                        >Edit Movie</button>
+                    </div>
+
+                    <div>
+                        {/* cancel your edits */}
+                        <button
+                            className={formView ? 'visible' : 'invisible'}
+                            onClick={() => setFormView(!formView)}
+                        >Cancel Edit</button>
+                    </div>
+
+                    <div>
+                        {/* save your edits */}
+                        <button
+                            className={formView ? 'visible' : 'invisible'}
+                            onClick={saveEdits}
+                        >Save Edits</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id='blank-div'>
+                <button
+                    onClick={backToMovies}
+                    id='movies-back'
+                >Back to Movies</button>
+            </div>
 
 
 
-
-            {/* edit your movie */}
-            <button
-                className={formView ? 'invisible' : 'visible'}
-                onClick={editMovie}
-            >Edit Movie</button>
-
-            {/* cancel your edits */}
-            <button
-                className={formView ? 'visible' : 'invisible'}
-                onClick={() => setFormView(!formView)}
-            >Cancel Edit</button>
-
-            {/* save your edits */}
-            <button
-                className={formView ? 'visible' : 'invisible'}
-                onClick={saveEdits}
-            >Save Edits</button>
+            <div id='detailsSidebar-div'>
 
 
-            <br />
-            {JSON.stringify(alterMovie)}
+                {movieDetails.map((movie) =>
+                    <div key={movie.id}>
+                        <img className='movieImage' src={movie.poster} alt={movie.title} />
+                    </div>
+                )}
 
-            <div
-                className={formView ? 'visible' : 'invisible'}
-                id='movieEdit-form'
-            >
-                <h3>Edit Your Movie!</h3>
-
-                <label>Title: <input
-                    type='text'
-                    placeholder="Movie Title"
-                    value={alterMovie.title}
-                    onChange={handleAlterMovie('title')}
-                >
-                </input></label>
-                {alterMovie.title}
-
-                <label>Poster: <input
+                <label className={formView ? 'visible' : 'invisible'}>Poster: <input
                     type='text'
                     placeholder="picture.jpg"
                     value={alterMovie.poster}
                     onChange={handleAlterMovie('poster')}
                 >
                 </input></label>
-                {alterMovie.poster}
-
-                <label>Description: <textarea
-                    type='text'
-                    placeholder="Thoughts on the movie"
-                    value={alterMovie.description}
-                    onChange={handleAlterMovie('description')}
-                >
-                </textarea></label>
-                {alterMovie.description}
+                {/* {alterMovie.poster} */}
 
 
-                {/* input for genres */}
+
+                {/* genre map */}
+                {genreDetails.map((genre, i) =>
+                    <div key={i}>
+                        <p>{genre.name}</p>
+                        <p>Genre id: {genre.id}</p>
+                        <p>movies_genres_id: {genre.movies_genres_id}</p>
+                    </div>
+                )}
+
+            </div>
+
+
+
+            <div id='detailsMain-div' >
+                {/* movies map */}
+
+                <div className={formView ? 'invisible' : 'visible'}>
+                    <h3>Description:</h3>
+                    {movieDetails.map((movie) =>
+                        <div key={movie.id}>
+                            <p>{movie.description}</p>
+                        </div>
+                    )}
+                </div>
+
+                <div className={formView ? 'visible' : 'invisible'}>
+
+                    <label>Description: <textarea
+                        type='text'
+                        id='edit-description'
+                        placeholder="Thoughts on the movie"
+                        value={alterMovie.description}
+                        onChange={handleAlterMovie('description')}
+                    >
+                    </textarea></label>
+                    {/* {alterMovie.description} */}
+                </div>
+
+
 
 
             </div>
+
+
+            {/* <br />
+            {JSON.stringify(alterMovie)} */}
 
 
         </div>

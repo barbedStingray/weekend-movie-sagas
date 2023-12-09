@@ -16,11 +16,11 @@ function App() {
 
   // populating the dropbox
   function populateGenres() {
-      console.log(`populating <select>`);
-      dispatch({ type: 'FETCH_SELECT_GENRE_MENU' });
+    console.log(`populating <select>`);
+    dispatch({ type: 'FETCH_SELECT_GENRE_MENU' });
   }
   useEffect(() => {
-      populateGenres()
+    populateGenres()
   }, []);
 
 
@@ -29,12 +29,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>The Movies Saga!</h1>
 
-        <Link to={'/addMovie'}><p>Add New Movie</p></Link>
-        
       <Routes>
-
         <Route>
           <Route path={"/"} element={<MovieList />} />
           <Route path={"/details/:id"} element={<DetailsPage />} />
