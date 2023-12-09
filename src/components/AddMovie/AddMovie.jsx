@@ -4,20 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 
-export default function AddMovie() {
+export default function AddMovie(props) {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const genreDropdown = useSelector(store => store.genreDropdown);
-    console.log(`dropdown`, genreDropdown);
-
-    function populateGenres() {
-        console.log(`populating <select>`);
-        dispatch({ type: 'FETCH_SELECT_GENRE_MENU' });
-    }
-    useEffect(() => {
-        populateGenres()
-    }, []);
 
 
     const [newMovie, setNewMovie] = useState({
@@ -84,7 +74,7 @@ export default function AddMovie() {
                     onChange={handleNewMovie('genre_id')}
                     name="genreType"
                 >
-                    {genreDropdown.map((genre) => 
+                    {props.genreDropdown.map((genre) => 
                     <option 
                         key={genre.id}
                         value={genre.id}

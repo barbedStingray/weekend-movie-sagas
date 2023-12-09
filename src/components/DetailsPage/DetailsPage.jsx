@@ -56,11 +56,11 @@ export default function DetailsPage() {
             title: movieDetails[0].title,
             poster: movieDetails[0].poster,
             description: movieDetails[0].description,
-            genre_id: ''
         });
         console.log(`new alterMovie`, alterMovie);
         setFormView(!formView);
     }
+
 
     // save your edits 
     function saveEdits() {
@@ -98,6 +98,8 @@ export default function DetailsPage() {
             {genreDetails.map((genre, i) =>
                 <div key={i}>
                     <p>{genre.name}</p>
+                    <p>Genre id: {genre.id}</p>
+                    <p>movies_genres_id: {genre.movies_genres_id}</p>
                 </div>
             )}
 
@@ -132,32 +134,36 @@ export default function DetailsPage() {
             >
                 <h3>Edit Your Movie!</h3>
 
-                    <label>Title: <input
-                        type='text'
-                        placeholder="Movie Title"
-                        value={alterMovie.title}
-                        onChange={handleAlterMovie('title')}
-                    >
-                    </input></label>
-                    {alterMovie.title}
+                <label>Title: <input
+                    type='text'
+                    placeholder="Movie Title"
+                    value={alterMovie.title}
+                    onChange={handleAlterMovie('title')}
+                >
+                </input></label>
+                {alterMovie.title}
 
-                    <label>Poster: <input
-                        type='text'
-                        placeholder="picture.jpg"
-                        value={alterMovie.poster}
-                        onChange={handleAlterMovie('poster')}
-                    >
-                    </input></label>
-                    {alterMovie.poster}
+                <label>Poster: <input
+                    type='text'
+                    placeholder="picture.jpg"
+                    value={alterMovie.poster}
+                    onChange={handleAlterMovie('poster')}
+                >
+                </input></label>
+                {alterMovie.poster}
 
-                    <label>Description: <textarea
-                        type='text'
-                        placeholder="Thoughts on the movie"
-                        value={alterMovie.description}
-                        onChange={handleAlterMovie('description')}
-                    >
-                    </textarea></label>
-                    {alterMovie.description}
+                <label>Description: <textarea
+                    type='text'
+                    placeholder="Thoughts on the movie"
+                    value={alterMovie.description}
+                    onChange={handleAlterMovie('description')}
+                >
+                </textarea></label>
+                {alterMovie.description}
+
+
+                {/* input for genres */}
+
 
             </div>
 
