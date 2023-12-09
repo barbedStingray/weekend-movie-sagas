@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
   pool.query(query)
-    .then( result => {
+    .then(result => {
       res.send(result.rows);
     })
     .catch(err => {
@@ -34,28 +34,17 @@ WHERE "movies"."id" = $1
 ;`;
 
   pool.query(queryText, [req.params.id])
-  .then((result) => {
-    console.log(`success GET`);
-    console.log(`results:`, result.rows);
-    res.send(result.rows);
-  }).catch((error) => {
-    console.log(`error in GET details`);
-    res.sendStatus(500);
-  });
+    .then((result) => {
+      console.log(`success GET`);
+      console.log(`results:`, result.rows);
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(`error in GET details`);
+      res.sendStatus(500);
+    });
 })
 
 // get Genres here
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -75,15 +64,15 @@ router.post('/', (req, res) => {
 
   // FIRST QUERY MAKES MOVIE
   pool.query(insertMovieQuery, [req.body.title, req.body.poster, req.body.description])
-  .then(result => {
-    console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
-    console.log(`request body`, req.body);
-    console.log('genre_id:', req.body.genre_id);
-    
-    const createdMovieId = result.rows[0].id
+    .then(result => {
+      console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
+      console.log(`request body`, req.body);
+      console.log('genre_id:', req.body.genre_id);
 
-    // Now handle the genre reference
-    const insertMovieGenreQuery = `
+      const createdMovieId = result.rows[0].id
+
+      // Now handle the genre reference
+      const insertMovieGenreQuery = `
       INSERT INTO "movies_genres" ("movie_id", "genre_id")
       VALUES  ($1, $2);
       `
@@ -97,11 +86,38 @@ router.post('/', (req, res) => {
         res.sendStatus(500)
       })
 
-// Catch for first query
-  }).catch(err => {
-    console.log(err);
-    res.sendStatus(500)
-  })
+      // Catch for first query
+    }).catch(err => {
+      console.log(err);
+      res.sendStatus(500)
+    })
 })
+
+
+
+
+
+
+// PUT route /api/movie/edit
+router.put('/edit', (req, res) => {
+  console.log(`requestPUT body:`, req.body);
+
+  const movieQuery = `
+  UPDATE "movies"
+    SET "title" = $1, "poster" = $2, "description" = $3 
+    WHERE "id" = $4;`;  
+
+  pool.query(movieQuery, [req.body.title, req.body.poster, req.body.description, req.body.id])
+    .then((result) => {
+
+      // handle genre query here
+
+      // handle genre query here
+      res.sendStatus(201);
+    }).catch((error) => {
+        console.log(`error in PUT /edit movie`);
+        res.sendStatus(500);
+    });
+});
 
 module.exports = router;

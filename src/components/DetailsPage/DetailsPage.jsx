@@ -18,6 +18,7 @@ export default function DetailsPage() {
 
     // variable to pass the update
     const [alterMovie, setAlterMovie] = useState({
+        id: '',
         title: '',
         poster: '',
         description: '',
@@ -51,6 +52,7 @@ export default function DetailsPage() {
     function editMovie() {
         console.log(`editing your movie`);
         setAlterMovie({
+            id: movieDetails[0].id,
             title: movieDetails[0].title,
             poster: movieDetails[0].poster,
             description: movieDetails[0].description,
@@ -61,11 +63,17 @@ export default function DetailsPage() {
     }
 
     // save your edits 
-    function saveEdits(id) {
+    function saveEdits() {
         console.log('saving your edits:', alterMovie);
 
         // send your edits to the server
         dispatch({ type: 'UPDATE_DETAILS_MOVIE', payload: alterMovie });
+
+        // refresh page after edit to redisplay
+        setTimeout(refreshPage, 50);
+
+        // hide formView
+        setFormView(!formView);
     }
 
 
@@ -93,6 +101,9 @@ export default function DetailsPage() {
                 </div>
             )}
 
+
+
+
             {/* edit your movie */}
             <button
                 className={formView ? 'invisible' : 'visible'}
@@ -102,7 +113,7 @@ export default function DetailsPage() {
             {/* cancel your edits */}
             <button
                 className={formView ? 'visible' : 'invisible'}
-                onClick={() => editMovie(id)}
+                onClick={() => setFormView(!formView)}
             >Cancel Edit</button>
 
             {/* save your edits */}

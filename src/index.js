@@ -81,10 +81,11 @@ function* fetchGenreMenu() {
 // PUT route update details of a movie
 function* updateDetailsMovie(action) {
     try {
-        yield axios.put()
+        yield axios.put(`/api/movie/edit`, action.payload);
+        yield put({ type: 'FETCH_MOVIES' });
 
     } catch (error) {
-        console.log(`error in updating single ${id} movie`, error);
+        console.log(`error in updating single ${action.payload.id} movie`, error);
         alert(`something went wrong`);
     }
 }
