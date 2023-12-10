@@ -16,14 +16,15 @@
 
 #details-page {
   text-align: center;
-  border: 5px solid darkslateblue;
+  /* border: 5px solid darkslateblue; */
   display: grid;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 2fr 6fr;
   grid-template-rows: 150px 1fr;
   grid-template-areas: 
     'blank header'
     'sidebar main';
   padding: 0 1%;
+  min-height: 800px;
   /* background-color: var(--app-background-color);
   color: var(--text-color); */
 }
@@ -31,41 +32,71 @@
 #detailsHeader-div {
   grid-area: header;
   display: grid;
-  /* border: 2px solid yellowgreen; */
-  align-content: space-around;
+  border: 2px solid yellowgreen;
+  align-items: end;
 }
 
-#nav-buttons {
-  /* border: solid 2px gold; */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
 
-#blank-div {
-  /* border: solid 2px gold; */
+
+/* #blank-div {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
   margin: 5%;
-}
+} */
 
 #detailsSidebar-div {
   grid-area: sidebar;
   /* border: 2px solid yellowgreen; */
-  padding: 3%;
+  display: grid;
+  justify-content: center;
+  align-items: start;
+  grid-template-rows: 50px 1fr;
 }
+
+#nav-buttons {
+  /* border: solid 2px gold; */
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  gap: 20px;
+
+
+}
+
 
 #detailsMain-div {
   grid-area: main;
-  padding: 10px 7%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 7% 5%;
+}
+#photo-one {
+  /* border: 2px solid salmon; */
+  display: grid;
+  align-items: center;
 }
 
+#text-description {
+  background-color: #3c3c3cee;
+  border-radius: 10px;
+}
+
+h3, h1 {
+  color: silver;
+}
+
+
+
 #edit-description {
-  width: 96%;
+  width: 90%;
   height: 200px;
+}
+
+#edit-poster {
+  width: 50%;
+  display: grid;
+  align-self: center;
 }
 
 

@@ -15,7 +15,7 @@ export default function AddMovie(props) {
         title: 'Your Movie Title Here',
         poster: '',
         description: '',
-        genre_id: ''
+        genre_id: '1'
     });
 
     const handleNewMovie = (key) => (event) => {
@@ -30,31 +30,42 @@ export default function AddMovie(props) {
         navigate('/');
     }
 
+    function backToMovies() {
+        console.log('going back to movielist');
+        navigate('/');
+    }
+
 
     return (
         <div id='add-movie'>
 
-            <Link to={'/'}><p>Return to Movies</p></Link>
-
             <div id='addHeader-div'>
-                {JSON.stringify(newMovie.title)}
-                <br />
-                <button onClick={addNewMovie}>Add Movie</button>
+                <div>
+                    <h2>{JSON.stringify(newMovie.title)}</h2>
+                </div>
+                <div>
+                    <button
+                        onClick={addNewMovie}
+                        className='submitButton'
+                    >Add Movie</button>
+                </div>
 
             </div>
 
             <div id='addMain-div'>
+
 
                 <div>
                     <label><input
                         type='text'
                         placeholder="Movie Title"
                         className='textInputs'
+                        required
                         value={newMovie.title}
                         onChange={handleNewMovie('title')}
                     >
                     </input></label>
-                    {newMovie.title}
+                    {/* {newMovie.title} */}
                 </div>
 
                 <div>
@@ -62,11 +73,12 @@ export default function AddMovie(props) {
                         type='text'
                         placeholder="picture.jpg"
                         className='textInputs'
+                        required
                         value={newMovie.poster}
                         onChange={handleNewMovie('poster')}
                     >
                     </input></label>
-                    {newMovie.poster}
+                    {/* {newMovie.poster} */}
                 </div>
 
                 <div>
@@ -75,34 +87,49 @@ export default function AddMovie(props) {
                         id='add-description'
                         className='textInputs'
                         placeholder="Description here..."
+                        required
                         value={newMovie.description}
                         onChange={handleNewMovie('description')}
                     >
                     </textarea></label>
-                    {newMovie.description}
+                    {/* {newMovie.description} */}
                 </div>
+
+                <div>
+                    <h4>Select Genre</h4>
+
+                    <select
+                        value={newMovie.genre}
+                        onChange={handleNewMovie('genre_id')}
+                        name="genreType"
+                        className='textInputs'
+                        required
+                    >
+                        {props.genreDropdown.map((genre) =>
+                            <option
+                                key={genre.id}
+                                value={genre.id}
+                            >{genre.name}</option>
+                        )}
+                    </select>
+                    {/* {newMovie.genre_id} */}
+
+                </div>
+
+
 
             </div>
 
+
             <div id='addSidebar-div'>
 
-                <h4>Select Genre</h4>
+                <div>
+                    <button
+                        onClick={backToMovies}
+                        className='normalButton'
+                    >Back to Movies</button>
+                </div>
 
-                <select
-                    value={newMovie.genre}
-                    onChange={handleNewMovie('genre_id')}
-                    name="genreType"
-                    className='textInputs'
-
-                >
-                    {props.genreDropdown.map((genre) =>
-                        <option
-                            key={genre.id}
-                            value={genre.id}
-                        >{genre.name}</option>
-                    )}
-                </select>
-                {newMovie.genre_id}
             </div>
 
 

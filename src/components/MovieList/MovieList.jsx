@@ -22,6 +22,11 @@ function MovieList() {
         navigate(`/details/${id}`);
     }
 
+    function goToAddMovie() {
+        console.log('going to add movie');
+        navigate('/addMovie');
+    }
+
 
     return (
         <div id='movie-list'>
@@ -31,8 +36,12 @@ function MovieList() {
             </div>
 
             <div id='movieSidebar-div'>
-                <p>links to pages and searches here</p>
-                <Link to={'/addMovie'}><p>Add New Movie</p></Link>
+                <div>
+                    <button
+                        onClick={goToAddMovie}
+                        className='submitButton'
+                    >Add New Movie</button>
+                </div>
             </div>
 
             <div id='movieList-div'>

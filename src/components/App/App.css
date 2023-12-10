@@ -2,7 +2,7 @@
 :root {
   --app-background-color: #2d2d2d;
   --text-color: #828282;
-  --text-box-background: #3c3c3c;
+  --text-box-background: #3c3c3c99;
   --text-input-color: #c8c8c8;
   
 
@@ -15,9 +15,40 @@
   /* background-repeat: no-repeat; */
   /* display: flex; */
   /* flex-direction: column; */
-
+  color: var(--text-color);
 }
 
+.normalButton {
+  background-color: var(--text-input-color);
+  border: darkred 2px solid;
+  border-radius: 5px;
+  color: black;
+}
+.submitButton {
+  background-color: var(--text-input-color);
+  border: darkgreen 2px solid;
+  border-radius: 5px;
+  color: black;
+}
+.editButton {
+  background-color: var(--text-input-color);
+  border: goldenrod 2px solid;
+  border-radius: 5px;
+  color: black;
+}
+.deleteButton {
+  background-color: var(--text-input-color);
+  border: rgb(0, 0, 196) 2px solid;
+  border-radius: 5px;
+  color: black;
+}
+
+.textInputs {
+  background-color: var(--text-box-background);
+  color: var(--text-input-color);
+  border: 1px solid darkred;
+  border-radius: 5px;
+}
 
 
 

@@ -81,6 +81,11 @@ export default function DetailsPage() {
         setFormView(!formView);
     }
 
+    // delete the movie
+    function deleteMovie() {
+        console.log('deleting movie');
+    }
+
 
 
     return (
@@ -97,8 +102,7 @@ export default function DetailsPage() {
 
                 <div className={formView ? 'visible' : 'invisible'}>
                     {/* Edit title */}
-                    <label>Title:
-                        <br />
+                    <label><h1>Title:</h1>
                         <input
                             type='text'
                             placeholder="Movie Title"
@@ -111,74 +115,57 @@ export default function DetailsPage() {
 
                 </div>
 
-                {/* navigation buttons */}
-                <div id='nav-buttons'>
-                    <div>
-                        {/* edit your movie */}
-                        <button
-                            className={formView ? 'invisible' : 'visible'}
-                            onClick={editMovie}
-                        >Edit Movie</button>
-                    </div>
 
-                    <div>
-                        {/* cancel your edits */}
-                        <button
-                            className={formView ? 'visible' : 'invisible'}
-                            onClick={() => setFormView(!formView)}
-                        >Cancel Edit</button>
-                    </div>
-
-                    <div>
-                        {/* save your edits */}
-                        <button
-                            className={formView ? 'visible' : 'invisible'}
-                            onClick={saveEdits}
-                        >Save Edits</button>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div id='blank-div'>
-                <button
-                    onClick={backToMovies}
-                    id='movies-back'
-                >Back to Movies</button>
             </div>
 
 
 
             <div id='detailsSidebar-div'>
+                <div>
+                    <button
+                        onClick={backToMovies}
+                        id='movies-back'
+                        className='normalButton'
+                    >Back to Movies</button>
+                </div>
 
-
-                {movieDetails.map((movie) =>
-                    <div key={movie.id}>
-                        <img className='movieImage' src={movie.poster} alt={movie.title} />
+                {/* navigation buttons */}
+                <div id='nav-buttons'>
+                    <div className={formView ? 'invisible' : 'visible'}>
+                        {/* edit your movie */}
+                        <button
+                            className='editButton'
+                            onClick={editMovie}
+                        >Edit Movie</button>
                     </div>
-                )}
 
-                <label className={formView ? 'visible' : 'invisible'}>Poster: <input
-                    type='text'
-                    placeholder="picture.jpg"
-                    className='textInputs'
-                    value={alterMovie.poster}
-                    onChange={handleAlterMovie('poster')}
-                >
-                </input></label>
-                {/* {alterMovie.poster} */}
-
-
-
-                {/* genre map */}
-                {genreDetails.map((genre, i) =>
-                    <div key={i}>
-                        <p>{genre.name}</p>
-                        <p>Genre id: {genre.id}</p>
-                        <p>movies_genres_id: {genre.movies_genres_id}</p>
+                    <div className={formView ? 'visible' : 'invisible'}>
+                        {/* cancel your edits */}
+                        <button
+                            className='editButton'
+                            onClick={() => setFormView(!formView)}
+                        >Cancel Edit</button>
                     </div>
-                )}
+
+                    <div className={formView ? 'visible' : 'invisible'}>
+                        {/* save your edits */}
+                        <button
+                            className='submitButton'
+                            onClick={saveEdits}
+                        >Save Edits</button>
+                    </div>
+
+                    <div className={formView ? 'visible' : 'invisible'}>
+                        {/* delete your movie */}
+                        <button
+                            className='deleteButton'
+                            onClick={deleteMovie}
+                        >Delete Movie</button>
+                    </div>
+                </div>
+
+
+
 
             </div>
 
@@ -187,10 +174,18 @@ export default function DetailsPage() {
             <div id='detailsMain-div' >
                 {/* movies map */}
 
+                <div id='photo-one'>
+                    {movieDetails.map((movie) =>
+                        <div key={movie.id}>
+                            <img className='movieImage' src={movie.poster} alt={movie.title} />
+                        </div>
+                    )}
+                </div>
+
                 <div className={formView ? 'invisible' : 'visible'}>
                     <h3>Description:</h3>
                     {movieDetails.map((movie) =>
-                        <div key={movie.id}>
+                        <div id='text-description' key={movie.id}>
                             <p>{movie.description}</p>
                         </div>
                     )}
@@ -198,7 +193,7 @@ export default function DetailsPage() {
 
                 <div className={formView ? 'visible' : 'invisible'}>
 
-                    <label>Description: <textarea
+                    <label><h3>Description:</h3> <textarea
                         type='text'
                         id='edit-description'
                         className='textInputs'
@@ -208,6 +203,34 @@ export default function DetailsPage() {
                     </textarea></label>
                     {/* {alterMovie.description} */}
                 </div>
+
+                <div>
+                    {/* genre map */}
+                    {genreDetails.map((genre, i) =>
+                        <div key={i}>
+                            <p>{genre.name}</p>
+                            <p>Genre id: {genre.id}</p>
+                            <p>movies_genres_id: {genre.movies_genres_id}</p>
+                        </div>
+                    )}
+                </div>
+
+
+                <div>
+                    <label className={formView ? 'visible' : 'invisible'}><h3>Poster:</h3> <input
+                        type='text'
+                        id='edit-poster'
+                        placeholder="picture.jpg"
+                        className='textInputs'
+                        value={alterMovie.poster}
+                        onChange={handleAlterMovie('poster')}
+                    >
+                    </input></label>
+                    {/* {alterMovie.poster} */}
+                </div>
+
+
+
 
 
 

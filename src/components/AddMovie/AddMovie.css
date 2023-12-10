@@ -10,6 +10,7 @@
       'blank header'
       'sidebar main';
     padding: 0 1%;
+    height: 800px;
     /* background-color: var(--app-background-color);
     color: var(--text-color); */
 }
@@ -17,7 +18,11 @@
 #addHeader-div {
     grid-area: header;
     /* border: 2px solid yellowgreen; */
+    display: grid;
+    justify-content: center;
+    align-items: end;
 }
+
 
 #addSidebar-div {
     grid-area: sidebar;
@@ -28,9 +33,9 @@
 #addMain-div {
     grid-area: main;
     display: grid;
-    height: 300px;
-    border: 2px solid yellowgreen;
-
+    height: 450px;
+    /* border: 2px solid yellowgreen; */
+    padding-top: 10%;
 }
 
 #add-description {
@@ -38,8 +43,4 @@
     height: 150px;
   }
 
-  .textInputs {
-    background-color: var(--text-box-background);
-    color: var(--text-input-color);
-  }
   
