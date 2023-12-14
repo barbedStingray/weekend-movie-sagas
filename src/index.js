@@ -37,7 +37,7 @@ function* fetchAllMovies() {
     }
 }
 
-
+// ! you could combine the details and genres into one generator function
 function* fetchDetailsPage(action) {
     try {
         const results = yield axios.get(`/api/movie/details/${action.payload}`);

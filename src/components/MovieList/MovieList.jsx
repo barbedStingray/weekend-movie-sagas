@@ -14,12 +14,13 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
-    function goToDetailsPage(id) {
-        console.log(`going to details`, id);
+    function goToDetailsPage(movie) {
+        console.log(`movie:`, movie);
+        console.log(`going to details`, movie.id);
 
-        dispatch({ type: 'FETCH_DETAILS_PAGE', payload: id });
-        dispatch({ type: 'FETCH_DETAILS_GENRE', payload: id });
-        navigate(`/details/${id}`);
+        // dispatch({ type: 'FETCH_DETAILS_PAGE', payload: movie.id });
+        // dispatch({ type: 'FETCH_DETAILS_GENRE', payload: movie.id });
+        navigate(`/details/${movie.id}`);
     }
 
     function goToAddMovie() {
@@ -48,7 +49,7 @@ function MovieList() {
                 {movies.map(movie => {
                     return (
                         <div key={movie.id} >
-                            <img className='movieImage' onClick={() => goToDetailsPage(movie.id)} src={movie.poster} alt={movie.title} />
+                            <img className='movieImage' onClick={(event) => goToDetailsPage(movie)} src={movie.poster} alt={movie.title} />
                         </div>
                     );
                 })}

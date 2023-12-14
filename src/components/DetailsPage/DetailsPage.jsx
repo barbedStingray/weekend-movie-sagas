@@ -39,7 +39,7 @@ export default function DetailsPage() {
 
     useEffect(() => {
         refreshPage()
-    }, []);
+    }, [id]);
 
     function backToMovies() {
         console.log(`go back to movies`);
